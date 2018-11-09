@@ -1,6 +1,7 @@
 `timescale 1ps/100fs
 module full_adder_tb(); //testbench doesnt have any inputs or outputs
 	reg a,b,c_in; 	//inputs are takens as reqisters ( they need to hold the value)
+
 	wire sum,carry; //outputs are takens as wires in tb .
 	full_adder dut(.*); //since all the inputs to the dut are the wires of same name
 	initial begin
