@@ -1,7 +1,7 @@
 module processing_block(
 	input [7:0][7:0] P,
 	input [15:0] M,
-	output [1:0][16:0] MAC);
+	output [1:0][15:0] PRE); //pre for pre result 
 	
 	wire [47:0] fs,fc;	//wires for intermediate full adders & carry
 	wire [7:0] hs,hc; 	//wires for intermediate half adder & carry
@@ -82,24 +82,27 @@ module processing_block(
 	//level 4
 	
 	//i need to jus pass through some wires 
-	and pass1(MAC[1][1],M[1],1'b1);
-	and pass2(MAC[1][0],P[0][0],1'b1);
+	and pass1(PRE[1][1],M[1],1'b1);
+	and pass2(PRE[1][0],P[0][0],1'b1);
 
-	half_adder ha7(.a(P[0][1]),.b(P[1][0]),.sum(hs[7]),.carry(MAC[1][2]));
+	and pass1(PRE[0][0],M[0],1'b1);
+	and pass2(PRE[0][15],M[15],1'b1);
 	
-	full_adder fa35(.a(hs[6]),.b(M[2]),.c_in(P[0][2]),.sum(MAC[0][2]),.carry(MAC[1][3]));
+	half_adder ha7(.a(P[0][1]),.b(P[1][0]),.sum(PRE[0][1]),.carry(PRE[1][2]));
 	
-	full_adder fa36(.a(fs[24]),.b(hc[6]),.c_in(hs[4]),.sum(MAC[0][3]),.carry(MAC[1][4]));
-	full_adder fa37(.a(fs[25]),.b(fc[24]),.c_in(fs[8]),.sum(MAC[0][4]),.carry(MAC[1][5]));
-	full_adder fa38(.a(fs[26]),.b(fc[25]),.c_in(fs[9]),.sum(MAC[0][5]),.carry(MAC[1][6]));
-	full_adder fa39(.a(fs[27]),.b(fc[26]),.c_in(fs[11]),.sum(MAC[0][6]),.carry(MAC[1][7]));
-	full_adder fa40(.a(fs[28]),.b(fc[27]),.c_in(fs[13]),.sum(MAC[0][7]),.carry(MAC[1][8]));
-	full_adder fa41(.a(fs[29]),.b(fc[28]),.c_in(fs[15]),.sum(MAC[0][8]),.carry(MAC[1][9]));
-	full_adder fa42(.a(fs[30]),.b(fc[29]),.c_in(fs[17]),.sum(MAC[0][9]),.carry(MAC[1][10]));
-	full_adder fa43(.a(fs[31]),.b(fc[30]),.c_in(fs[19]),.sum(MAC[0][10]),.carry(MAC[1][11]));
-	full_adder fa44(.a(fs[32]),.b(fc[31]),.c_in(fs[21]),.sum(MAC[0][11]),.carry(MAC[1][12]));
-	full_adder fa45(.a(fs[33]),.b(fc[32]),.c_in(fs[23]),.sum(MAC[0][12]),.carry(MAC[1][13]));
-	full_adder fa46(.a(fs[34]),.b(fc[33]),.c_in(fs[25]),.sum(MAC[0][13]),.carry(MAC[1][14]));
-	full_adder fa47(.a(M[14]),.b(fc[34]),.c_in(P[7][6]),.sum(MAC[0][14]),.carry(MAC[1][15]));
+	full_adder fa35(.a(hs[6]),.b(M[2]),.c_in(P[0][2]),.sum(PRE[0][2]),.carry(PRE[1][3]));
+	
+	full_adder fa36(.a(fs[24]),.b(hc[6]),.c_in(hs[4]),.sum(PRE[0][3]),.carry(PRE[1][4]));
+	full_adder fa37(.a(fs[25]),.b(fc[24]),.c_in(fs[8]),.sum(PRE[0][4]),.carry(PRE[1][5]));
+	full_adder fa38(.a(fs[26]),.b(fc[25]),.c_in(fs[9]),.sum(PRE[0][5]),.carry(PRE[1][6]));
+	full_adder fa39(.a(fs[27]),.b(fc[26]),.c_in(fs[11]),.sum(PRE[0][6]),.carry(PRE[1][7]));
+	full_adder fa40(.a(fs[28]),.b(fc[27]),.c_in(fs[13]),.sum(PRE[0][7]),.carry(PRE[1][8]));
+	full_adder fa41(.a(fs[29]),.b(fc[28]),.c_in(fs[15]),.sum(PRE[0][8]),.carry(PRE[1][9]));
+	full_adder fa42(.a(fs[30]),.b(fc[29]),.c_in(fs[17]),.sum(PRE[0][9]),.carry(PRE[1][10]));
+	full_adder fa43(.a(fs[31]),.b(fc[30]),.c_in(fs[19]),.sum(PRE[0][10]),.carry(PRE[1][11]));
+	full_adder fa44(.a(fs[32]),.b(fc[31]),.c_in(fs[21]),.sum(PRE[0][11]),.carry(PRE[1][12]));
+	full_adder fa45(.a(fs[33]),.b(fc[32]),.c_in(fs[23]),.sum(PRE[0][12]),.carry(PRE[1][13]));
+	full_adder fa46(.a(fs[34]),.b(fc[33]),.c_in(fs[25]),.sum(PRE[0][13]),.carry(PRE[1][14]));
+	full_adder fa47(.a(M[14]),.b(fc[34]),.c_in(P[7][6]),.sum(PRE[0][14]),.carry(PRE[1][15]));
 endmodule
 
