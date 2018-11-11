@@ -19,9 +19,9 @@ module top_level(
 	genvar i;
 	wire [7:0][7:0] P;
 	wire [1:0][15:0] PRE;
-	reg [16:0] RES;	
 	gen_part_products U1(A,B,P);
 	
 	processing_block U2(P,M,PRE);
 
+	adder16 U3(PRE[1],PRE[0],1'b0,RES);
 endmodule
