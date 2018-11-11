@@ -1,7 +1,7 @@
 module processing_block(
 	input [7:0][7:0] P,
 	input [15:0] M,
-	output [1:0][15:0] PRE); //pre for pre result 
+	output [1:0][15:0] PRE); //pre for pre result
 	
 	wire [47:0] fs,fc;	//wires for intermediate full adders & carry
 	wire [7:0] hs,hc; 	//wires for intermediate half adder & carry
