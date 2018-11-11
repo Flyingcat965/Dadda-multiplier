@@ -103,6 +103,6 @@ module processing_block(
 	full_adder fa44(fs[32],fc[31],fs[21],PRE[0][11],PRE[1][12]);
 	full_adder fa45(fs[33],fc[32],fs[23],PRE[0][12],PRE[1][13]);
 	full_adder fa46(fs[34],fc[33],fs[25],PRE[0][13],PRE[1][14]);
-	full_adder fa47(M[14],fc[34],P[7][6],PRE[0][14],PRE[1][15]);
+	full_adder fa47(M[14],fc[34],P[7][7],PRE[0][14],PRE[1][15]);
 endmodule
 
