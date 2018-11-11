@@ -10,6 +10,6 @@ module full_adder(
 );
 
 assign #120  sum = a ^ b ^ c_in;
-assign #80  carry = a & b & c_in;
+assign #80  carry = (a & b) +(b & c_in) + (a & c_in);
 
 endmodule // full_adder
