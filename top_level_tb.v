@@ -16,11 +16,22 @@ module top_level_tb(); //testbench doesnt have any inputs or outputs
 	reg [7:0] B;
 	reg[15:0] M;
 	wire [16:0] RES; //outputs are takens as wires in tb .
+	reg[7:0] ain_array[0:250]; 
+	reg[7:0] bin_array[0:250]; 
+	reg[16:0] res_array[0:250];
+	reg[15:0] M_array[0:250];   
 	top_level dut(.*); //since all the inputs to the dut are the wires of same name
+	integer i;
 	initial begin
 		$dumpfile("top_level_tb.vcd"); 	
 		$dumpvars(0,top_level_tb);			//first argument is the level of debugging
 									//level 0 will log all the variable even in 
+		$monitor(A,B,M,RES);
+
+		$readmemb("ain.txt",ain_array);
+		$readmemb("bin.txt",bin_array);
+		$readmemb("res.txt",res_array);
+		$readmemb("m.txt",M_array);
 		//sub modules 
 		//whereas level 1 will log only the ones in the top module 
 		A = 8'h0;
@@ -33,5 +44,22 @@ module top_level_tb(); //testbench doesnt have any inputs or outputs
 		B = 8'hff;
 		#200;
 		#1000;
+	
+		M = 16'h02;
+		$display("starting....");
+
+		for(i = 0;i<250;i = i+1)begin
+			A = ain_array[i];
+			B = bin_array[i];
+			M = M_array[i];
+			#1000;
+			$display("A = %h, B = %h, M = %h , RES = %h",A,B,M,RES);
+			if(RES != res_array[i])
+				$display("error");
+			else 
+				$display("test passed");
+
+		end
+		
 	end
 endmodule

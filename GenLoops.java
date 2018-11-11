@@ -1,5 +1,7 @@
+import java.util.Random;
 public class GenLoops{
 	public static void main(String[] args){
+		Random rand = new Random();
 		System.out.println("testing java code");
 		int a = 24,b = 23,c = 5;
 		for (int fs_index  = 36;fs_index < 47 ; fs_index++){
@@ -16,5 +18,33 @@ public class GenLoops{
 			System.out.println("s/fs\\["+a+"\\]/MAC\\[0\\]\\["+b+"\\]/");
 			b++;
 		}
-}
+		int[] ain_array = new int[255];
+		int[] bin_array = new int[255];
+		int[] m_array = new int[255];
+		int[] res_array = new int[255];
+
+
+
+		for(int i = 0;i < 250; i++)
+		{
+			ain_array[i] = rand.nextInt(255);
+			bin_array[i] = rand.nextInt(255);
+			m_array[i] = rand.nextInt(255);
+			res_array[i] = m_array[i] + ain_array[i] * bin_array[i];
+		}
+			for(int i = 0;i<250;i++)
+				System.out.println(Integer.toBinaryString(ain_array[i]));
+
+			System.out.println("-----------------------------------------------------------------");
+
+			for(int i = 0;i<250;i++)
+				System.out.println(Integer.toBinaryString(bin_array[i]));
+			System.out.println("-----------------------------------------------------------------");
+			for(int i = 0;i<250;i++)
+				System.out.println(Integer.toBinaryString(m_array[i]));
+			System.out.println("-----------------------------------------------------------------");
+			for(int i = 0;i<250;i++)
+				System.out.println(Integer.toBinaryString(res_array[i]));
+			System.out.println("-----------------------------------------------------------------");
+	}
 }
