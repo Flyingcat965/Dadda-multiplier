@@ -26,11 +26,12 @@ module top_level_tb(); //testbench doesnt have any inputs or outputs
 		A = 8'h0;
 		B = 8'h0;
 		M = 16'h0;
-		#200;
+		#2000;
 		A = 8'hff;
 		B = 8'haa;
-		#200;
+		#2000;
 		B = 8'hff;
 		#200;
+		#1000;
 	end
 endmodule

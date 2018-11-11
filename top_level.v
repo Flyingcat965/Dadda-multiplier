@@ -23,8 +23,5 @@ module top_level(
 	gen_part_products U1(A,B,P);
 	
 	processing_block U2(P,M,PRE);
-	
-	always @(*)
-		RES = PRE[1] + PRE[0];
 
 endmodule

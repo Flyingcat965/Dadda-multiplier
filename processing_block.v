@@ -85,8 +85,8 @@ module processing_block(
 	and pass1(PRE[1][1],M[1],1'b1);
 	and pass2(PRE[1][0],P[0][0],1'b1);
 
-	and pass1(PRE[0][0],M[0],1'b1);
-	and pass2(PRE[0][15],M[15],1'b1);
+	and pass3(PRE[0][0],M[0],1'b1);
+	and pass4(PRE[0][15],M[15],1'b1);
 	
 	half_adder ha7(P[0][1],P[1][0],PRE[0][1],PRE[1][2]);
 	
@@ -102,7 +102,7 @@ module processing_block(
 	full_adder fa43(fs[31],fc[30],fs[19],PRE[0][10],PRE[1][11]);
 	full_adder fa44(fs[32],fc[31],fs[21],PRE[0][11],PRE[1][12]);
 	full_adder fa45(fs[33],fc[32],fs[23],PRE[0][12],PRE[1][13]);
-	full_adder fa46(fs[34],fc[33],fs[25],PRE[0][13],PRE[1][14]);
+	full_adder fa46(fs[34],fc[33],fc[23],PRE[0][13],PRE[1][14]);
 	full_adder fa47(M[14],fc[34],P[7][7],PRE[0][14],PRE[1][15]);
 endmodule
 
