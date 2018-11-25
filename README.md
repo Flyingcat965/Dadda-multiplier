@@ -1,7 +1,7 @@
 # Dadda-multiplier
 Dadda multiplier implimentation in verilog, Uses carry select adder (square root stacking) for final addition 
 
-##See the report pdf for more details.
+## See the report pdf for more details.
 
    An 8x8 dadda multiplier was designed and verified using verilog. the details of
    the top level module are as given below.
@@ -10,7 +10,7 @@ Dadda multiplier implimentation in verilog, Uses carry select adder (square root
     RES - 17 bit output.
 
 
-submodules:
+#### submodules:
   gen part products - generate the partial products of the multiplication, A*B
     as an 8x8 array.
   
@@ -24,5 +24,5 @@ submodules:
 
 
 
-run.sh will compile all modules
+### run.sh will compile all modules
 
